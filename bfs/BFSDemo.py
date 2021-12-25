@@ -24,7 +24,10 @@ def BFS(m, start=None):
             break
 
         # explore each available naigabour cell or child cells
+        # a loop over the four directions, the algorithm give the priority for W->N->S->E,
         for d in 'ESNW':
+            # maze_map is the maze dictionary its indexes are (x,y) and
+            # their values are the possible moves for example, {'E':0,'W':0,'S':1,'N':0} this says that only S,South, is open.
             if m.maze_map[currCell][d] == True:
                 if d == 'E':
                     childCell = (currCell[0], currCell[1]+1)
@@ -57,6 +60,8 @@ if __name__ == '__main__':
     m = maze(5, 5)
     # we chose a maze to test all search algorithms on
     m.CreateMaze(loadMaze="maze--2021-12-24--19-27-15.csv")
+
+    # assigning the returned values of "BFS" function to the variables below
     bSearch, bfsPath, fwdPath = BFS(m)
 
     # create (a, b, c) as agents
@@ -73,7 +78,7 @@ if __name__ == '__main__':
     m.tracePath({a: bSearch}, delay=100)
     # make (c) follow the backward path
     m.tracePath({c: bfsPath})
-    # make (b) follow the optimal path
+    # make (b) follow the forward path
     m.tracePath({b: fwdPath})
 
     print("The solution path is:", fwdPath)

@@ -102,7 +102,7 @@ if __name__ == '__main__':
     # make agent (c) follow DFS backward path
     m.tracePath({c: dfsPath})
 
-    # make (b) follow the optimal path
+    # make (b) follow the forward path
     m.tracePath({b: fwdPath})
 
     print("The solution path is:", fwdPath)
